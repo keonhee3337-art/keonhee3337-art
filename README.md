@@ -1,81 +1,94 @@
-# Keonhee — Agentic AI Developer
+# Keonhee Kim — Agentic AI Developer
 
-Business Administration student at Sungkyunkwan University (SKKU), South Korea.
-I build production agentic AI systems — not demos, not tutorials. Deployed, working software.
+**Business Administration, Sungkyunkwan University (SKKU), South Korea.**
 
----
+I build production agentic AI systems that automate business workflows — not demos, not tutorials. Deployed, working software.
 
-## What I Build
-
-**Multi-agent systems** using LangGraph, RAG pipelines, and custom vector databases.
-My focus: systems where multiple AI agents coordinate to solve problems that a single LLM can't handle alone.
+Unique profile: **AI technical depth + business/consulting background.** I design multi-agent systems and understand the business problems they solve. That combination is rare at student level.
 
 ---
 
 ## Projects
 
 ### FinAgent — Multi-Agent Financial Analysis System
-**Live:** [keonhee-finagent.streamlit.app](https://keonhee-finagent.streamlit.app)
+**Live:** [keonhee-finagent.streamlit.app](https://keonhee-finagent.streamlit.app) &nbsp;|&nbsp; [GitHub](https://github.com/keonhee3337-art/FinAgent)
 
-A three-agent pipeline that answers financial questions about Korean companies (Samsung Electronics, SK Hynix, LG Electronics) using structured data retrieval and document-grounded reasoning.
+Automates financial analysis workflows for Korean public companies using a three-agent LangGraph pipeline. What previously required an analyst to write SQL, search documents, and synthesize a report now happens in a single natural language query.
 
 **Architecture:**
-- **Orchestration:** LangGraph (StateGraph with three specialized agent nodes)
-- **Structured retrieval:** Text2SQL — GPT-4o generates and executes SQL against a SQLite database containing 2020–2024 Korean company financials
-- **Semantic retrieval:** RAG — custom vector database using OpenAI `text-embedding-3-small` and cosine similarity (built from scratch, no ChromaDB)
-- **Synthesis:** GPT-4o report agent combines SQL results and RAG findings into a structured markdown report
-- **Backend:** FastAPI (`POST /analyze` endpoint)
-- **Frontend:** Streamlit (three tabs: Final Report, SQL Results, RAG Findings)
+- **Orchestration:** LangGraph `StateGraph` with typed `AgentState`. Streaming output via `graph.stream(stream_mode="values")`.
+- **SQL Agent:** GPT-4o generates SQL with schema injection → executes against SQLite (Samsung Electronics, SK Hynix, LG Electronics, 2020–2024)
+- **RAG Agent:** Custom vector database (OpenAI `text-embedding-3-small`, 1536 dims, NumPy cosine similarity). Built from scratch — no ChromaDB, no Pinecone.
+- **Report Agent:** GPT-4o synthesizes SQL results + RAG findings → structured markdown report
+- **Backend:** FastAPI (async, `POST /analyze`)
+- **Frontend:** Streamlit (streaming, per-session thread IDs, cached graph)
 
-**Key technical decision:** Replaced ChromaDB with a custom vector database after discovering a Python 3.14 / Pydantic v1 incompatibility. The custom implementation uses NumPy cosine similarity and JSON persistence — simpler, faster, and fully transparent.
+**Key decision documented:** ChromaDB incompatible with Python 3.14 (Pydantic v1 issue). Built custom VectorDB instead. Zero external dependencies for retrieval.
+
+---
+
+### DART MCP Server — Korean Financial Data as an AI Tool
+**GitHub:** [dart-mcp-server](https://github.com/keonhee3337-art/dart-mcp-server)
+
+A custom MCP (Model Context Protocol) server that exposes real-time Korean corporate financial data from DART (Korea Financial Supervisory Service) as tools for Claude Code and AI agents.
+
+**What it enables:** Any MCP-compatible AI agent can query Samsung's latest earnings, check SK Hynix disclosures, or pull LG Electronics balance sheets — directly in conversation, no browser or manual API calls.
+
+**Tools:** `search_company` · `get_financials` · `get_company_info` · `get_disclosures`
+
+**Coverage:** All ~2,500+ Korean public companies on KOSPI and KOSDAQ.
+
+**Architecture:** Python MCP SDK (stdio transport) + dart-fss library → DART FSS Open API. ~300 lines of Python. Connected and active in Claude Code.
+
+**Why this is a moat:** DART integration is non-trivial for international AI tools. Korean-language company search, corporate structure, and financial statement formats require domain knowledge most tools don't have.
 
 ---
 
 ### DART Financial App — Samsung Data Analysis
 **Live:** [keonhee-strategy.streamlit.app](https://keonhee-strategy.streamlit.app)
 
-Pulls Samsung Electronics financial data from DART (Korea's official corporate disclosure system) via the DART-FSS Python library. Data is stored in SQLite, processed with RAG, and analyzed via GPT-4o. Deployed on Streamlit Cloud.
-
-**Stack:** DART-FSS API → SQLite → RAG → GPT-4o → Streamlit
+Samsung Electronics financial data via DART API → SQLite → RAG pipeline → GPT-4o analysis → Streamlit frontend. Deployed on Streamlit Cloud.
 
 ---
 
-### RAG Demo — Production-Ready Retrieval Pipeline
+### RAG Demo — Production Retrieval Pipeline
 
-A FastAPI backend with Pinecone vector database and Supabase conversation history, exposed via ngrok for live demos. Uses OpenAI `text-embedding-3-small` for embeddings and GPT-4o for generation.
+FastAPI + Pinecone + Supabase + GPT-4o. OpenAI `text-embedding-3-small` embeddings. Multi-turn conversation history in Supabase. Live via ngrok for demos.
 
-**Stack:** FastAPI + Pinecone + Supabase + GPT-4o + ngrok
+---
+
+### SDC Consulting Club — AI-Powered Application Review
+
+Built an automated application review system for SKKU's SDC Consulting Club. Gmail → PDF extraction → Claude Haiku API grading (structured rubric) → Google Sheets logging. Runs every 15 minutes via Google Apps Script. Eliminated manual review for initial screening.
 
 ---
 
 ## Technical Stack
 
-**Agentic AI:** LangGraph, RAG, custom vector databases, Text2SQL, multi-agent orchestration
-**AI APIs:** OpenAI GPT-4o, OpenAI Embeddings (`text-embedding-3-small`), Perplexity API
-**Vector databases:** Custom (NumPy cosine similarity), Pinecone
-**Backend:** FastAPI, SQLite, Supabase
-**Frontend:** Streamlit
-**Languages:** Python (numpy, pandas)
-**Tooling:** Claude Code, MCP (Model Context Protocol), LangGraph
-
----
-
-## Currently Building
-
-- Custom MCP server exposing DART financial data for Korean market analysis
-- Agentic AI second brain using Claude Code, MCP integrations, and a skills/agents system
+| Category | Tools |
+|----------|-------|
+| Agent orchestration | LangGraph (StateGraph, conditional edges, streaming, checkpointing) |
+| Retrieval | RAG, custom VectorDB (cosine similarity), Pinecone, Text2SQL |
+| LLM APIs | OpenAI GPT-4o, OpenAI Embeddings, Claude API (Haiku, Sonnet) |
+| Tooling | MCP (Model Context Protocol), Claude Code |
+| Backend | FastAPI (async, CORS), SQLite, Supabase (Postgres) |
+| Frontend | Streamlit (streaming, session state, caching) |
+| Data | DART FSS API (Korean corporate filings), yfinance |
+| Languages | Python — numpy, pandas, asyncio |
 
 ---
 
 ## Background
 
-Business Administration at SKKU while building expertise in agentic AI systems. My work sits at the intersection of AI engineering and business strategy — I build the systems and understand the business context they operate in.
+Business Administration at SKKU. Active in SDC Consulting Club. Building expertise in agentic AI systems — specifically where AI engineering meets business applications.
 
-Active in the SDC Consulting Club at SKKU.
+Focus areas: multi-agent coordination, Korean market data, financial analysis automation, MCP tooling.
+
+I design systems end-to-end: problem definition → architecture → implementation → deployment → documented tradeoffs.
 
 ---
 
-## Connect
+## Live Projects
 
-- **FinAgent (live):** [keonhee-finagent.streamlit.app](https://keonhee-finagent.streamlit.app)
-- **DART App (live):** [keonhee-strategy.streamlit.app](https://keonhee-strategy.streamlit.app)
+- **FinAgent:** [keonhee-finagent.streamlit.app](https://keonhee-finagent.streamlit.app)
+- **DART App:** [keonhee-strategy.streamlit.app](https://keonhee-strategy.streamlit.app)
