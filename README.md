@@ -6,12 +6,14 @@ I build production agentic AI systems that automate business workflows — not d
 
 Unique profile: **AI technical depth + business/consulting background.** I design multi-agent systems and understand the business problems they solve. That combination is rare at student level.
 
+**Contact:** [LinkedIn](https://www.linkedin.com/in/keonhee-kim-97a430370/) · keonhee3337@gmail.com
+
 ---
 
 ## Projects
 
 ### SME Business Diagnostic AI
-**GitHub:** [sme-diagnostic-ai](https://github.com/keonhee3337-art/sme-diagnostic-ai)
+**GitHub:** [sme-diagnostic-ai](https://github.com/keonheek/sme-diagnostic-ai)
 
 Business owners describe their company and problem in plain language. A four-agent LangGraph pipeline structures the problem into a MECE driver tree, researches industry benchmarks via Perplexity, self-improves recommendations through an autoresearch loop, and auto-generates a 12-slide consulting deck — the same output structure used by BCG and McKinsey.
 
@@ -27,7 +29,7 @@ Business owners describe their company and problem in plain language. A four-age
 ---
 
 ### Korean SME Lead Intelligence + GEO Audit
-**GitHub:** [lead-intelligence](https://github.com/keonhee3337-art/lead-intelligence)
+**GitHub:** [lead-intelligence](https://github.com/keonheek/lead-intelligence)
 
 Automates B2B lead generation for Korean SMEs. Screens Korean manufacturers from DART by ICP criteria, scores them on AI readiness, audits each company's AI discoverability (GEO score), and generates personalized Korean outreach emails with a Haiku self-improvement loop. Exports to Excel.
 
@@ -41,7 +43,7 @@ Automates B2B lead generation for Korean SMEs. Screens Korean manufacturers from
 ---
 
 ### FinAgent — Multi-Agent Financial Analysis System
-**Live:** [keonhee-finagent.streamlit.app](https://keonhee-finagent.streamlit.app) | [GitHub](https://github.com/keonhee3337-art/FinAgent)
+**Live:** [keonhee-finagent.streamlit.app](https://keonhee-finagent.streamlit.app) | [GitHub](https://github.com/keonheek/FinAgent)
 
 Automates financial analysis workflows for Korean public companies using a three-agent LangGraph pipeline. What previously required an analyst to write SQL, search documents, and synthesize a report now happens in a single natural language query.
 
@@ -54,14 +56,14 @@ Automates financial analysis workflows for Korean public companies using a three
 ---
 
 ### M&A Due Diligence Suite
-**Live:** [keonhee-duediligence.streamlit.app](https://keonhee-duediligence.streamlit.app) | [GitHub](https://github.com/keonhee3337-art/consulting-emulation)
+**Live:** [keonhee-duediligence.streamlit.app](https://keonhee-duediligence.streamlit.app) | [GitHub](https://github.com/keonheek/consulting-emulation)
 
 AI-powered M&A analysis platform — valuation agent (DCF + comparable company analysis), hybrid search (BM25 + dense embeddings + RRF re-ranking), XGBoost financial distress model, auto-generated PPTX report. Deployed on Streamlit Cloud and AWS Lambda.
 
 ---
 
 ### DART MCP Server — Korean Financial Data as an AI Tool
-**GitHub:** [dart-mcp-server](https://github.com/keonhee3337-art/dart-mcp-server)
+**GitHub:** [dart-mcp-server](https://github.com/keonheek/dart-mcp-server)
 
 Custom MCP (Model Context Protocol) server exposing real-time Korean corporate financial data from DART as tools for Claude Code and AI agents. Covers all ~2,500+ Korean public companies on KOSPI and KOSDAQ.
 
@@ -70,7 +72,7 @@ Custom MCP (Model Context Protocol) server exposing real-time Korean corporate f
 ---
 
 ### Samsung Electronics Stock Forecast
-**GitHub:** [AI-project/06_Samsung_Forecast](https://github.com/keonhee3337-art/AI-project/tree/main/06_Samsung_Forecast)
+**GitHub:** [AI-project/06_Samsung_Forecast](https://github.com/keonheek/AI-project/tree/main/06_Samsung_Forecast)
 
 Dual-model time series analysis (Linear Regression + Prophet) on 10 years of Samsung Electronics (005930.KS) data. Live macro signals: USD/KRW exchange rate + Philadelphia Semiconductor Index (SOX).
 
@@ -93,16 +95,6 @@ Dual-model time series analysis (Linear Regression + Prophet) on 10 years of Sam
 
 ## Background
 
-Business Administration at SKKU. Chairman of SDC (SKKU-Deloitte Consulting) club. Building expertise in agentic AI systems — specifically where AI engineering meets business applications.
+Business Administration at SKKU. Founder of SDIC (SKKU-Deloitte Consulting) club. Building expertise in agentic AI systems — specifically where AI engineering meets business applications.
 
 Focus areas: multi-agent coordination, Korean market data, financial analysis automation, consulting AI, MCP tooling.
-
----
-
-## Live Projects
-
-- **SME Diagnostic AI:** [github.com/keonhee3337-art/sme-diagnostic-ai](https://github.com/keonhee3337-art/sme-diagnostic-ai)
-- **Lead Intelligence:** [github.com/keonhee3337-art/lead-intelligence](https://github.com/keonhee3337-art/lead-intelligence)
-- **FinAgent:** [keonhee-finagent.streamlit.app](https://keonhee-finagent.streamlit.app)
-- **M&A Due Diligence:** [keonhee-duediligence.streamlit.app](https://keonhee-duediligence.streamlit.app)
-- **DART App:** [keonhee-strategy.streamlit.app](https://keonhee-strategy.streamlit.app)
